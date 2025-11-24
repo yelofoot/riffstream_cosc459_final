@@ -249,9 +249,11 @@ $flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
           </div>
 
           <div class="row">
-            <a class="btn" href="edit_profile.php">Edit Profile</a>
-            <a class="btn" href="playlists.php">My Playlists</a>
-            <a class="btn" href="delete_account.php">Delete Account</a>
+            <a class="btn" href="update_profile.php">Edit profile</a>
+            <a class="btn btn-secondary" href="delete_playlist.php">Manage playlists</a>
+            <?php if ($isArtist): ?>
+              <a class="btn" href="add_track.php">Add track</a>
+            <?php endif; ?>
             <a class="btn" href="logout.php">Log out</a>
           </div>
         </section>
