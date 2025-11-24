@@ -1,0 +1,38 @@
+-- database.sql — RiffStream final project schema + sample data
+-- Run this in MAMP phpMyAdmin (Import tab or SQL tab).
+
+CREATE DATABASE IF NOT EXISTS `riffstream`
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_0900_ai_ci;
+
+USE `riffstream`;
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `user_id`      INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `first_name`   VARCHAR(50)  NOT NULL,
+  `last_name`    VARCHAR(50)  NOT NULL,
+  `username`     VARCHAR(30)  NOT NULL UNIQUE,
+  `email`        VARCHAR(120) NOT NULL UNIQUE,
+  `password_hash` VARCHAR(255) NOT NULL,
+  `account_type` ENUM('Listener','Artist') NOT NULL DEFAULT 'Listener',
+  `created_at`   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Sample users (password hashes are placeholders for grading).
+-- To log in, create a new account through signup.php.
+
+INSERT INTO `users` (first_name, last_name, username, email, password_hash, account_type, created_at) VALUES
+('Alex','Smith','asmith1','asmith1@example.com','sample_hash_here','Artist',   NOW()),
+('Jamie','Johnson','jjohnson2','jjohnson2@example.com','sample_hash_here','Listener',NOW()),
+('Taylor','Davis','tdavis3','tdavis3@example.com','sample_hash_here','Listener',NOW()),
+('Jordan','Brown','jbrown4','jbrown4@example.com','sample_hash_here','Artist', NOW()),
+('Casey','Miller','cmiller5','cmiller5@example.com','sample_hash_here','Listener',NOW()),
+('Morgan','Wilson','mwilson6','mwilson6@example.com','sample_hash_here','Listener',NOW()),
+('Riley','Moore','rmoore7','rmoore7@example.com','sample_hash_here','Artist', NOW()),
+('Avery','Taylor','ataylor8','ataylor8@example.com','sample_hash_here','Listener',NOW()),
+('Quinn','Anderson','qanderson9','qanderson9@example.com','sample_hash_here','Listener',NOW()),
+('Skyler','Thomas','sthomas10','sthomas10@example.com','sample_hash_here','Artist',NOW());
+
+
