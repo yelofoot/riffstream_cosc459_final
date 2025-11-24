@@ -102,6 +102,14 @@ button, .btn {
   justify-content: center;
 }
 
+.btn-secondary {
+  background: linear-gradient(180deg, #7689a6, #536178);
+}
+
+.btn-danger {
+  background: linear-gradient(180deg, #ff7b8a, #ff5d6c);
+}
+
 button:hover, .btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 30px rgba(58,134,255,0.35);
@@ -144,6 +152,30 @@ button:disabled {
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
+.stacked-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.stacked-list li {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
+}
+
+.item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.meta { color: var(--muted); font-size: 13px; margin-top: 4px; }
 
 @media (max-width: 520px) {
   .grid-2 { grid-template-columns: 1fr; }
