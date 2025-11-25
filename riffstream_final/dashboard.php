@@ -197,19 +197,9 @@ $flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
       <div class="hero">
         <div class="hero-main">
           <span class="pill"><?php echo h($me['account_type']); ?> account</span>
-          <h1 class="hero-title">
-            <?php if ($isArtist): ?>
-              Welcome back, <?php echo h($displayName); ?> — RiffStream is ready for your next track.
-            <?php else: ?>
-              Welcome back, <?php echo h($displayName); ?> — time to discover something new.
-            <?php endif; ?>
-          </h1>
+          <h1 class="hero-title">Welcome back — your RiffStream hub is ready.</h1>
           <p class="hero-sub">
-            <?php if ($isArtist): ?>
-              This is your home base for managing your artist presence and connecting with listeners.
-            <?php else: ?>
-              This is your home base for keeping playlists fresh and following the artists you love.
-            <?php endif; ?>
+            From here you can update your profile, review playlists, and manage the account details that keep your music world organized.
           </p>
         </div>
 
@@ -259,54 +249,25 @@ $flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
         </section>
 
         <section class="card-sm" aria-label="Experience focus">
-          <?php if ($isArtist): ?>
-            <h2 class="section-title">Artist spotlight</h2>
-            <p class="muted">
-              Think of this page as your backstage area. As RiffStream grows, this is where you’ll manage uploads and connect with fans.
-            </p>
-            <div class="quick-actions">
-              <div>
-                <div class="qa-item-title">Upload and organize tracks</div>
-                <div class="qa-item-note">Plan EPs, singles, and albums so listeners can explore your catalog.</div>
-              </div>
-              <div>
-                <div class="qa-item-title">Shape your sound identity</div>
-                <div class="qa-item-note">Use consistent genres and descriptions so your music is easier to find.</div>
-              </div>
-              <div>
-                <div class="qa-item-title">Grow your audience</div>
-                <div class="qa-item-note">Encourage follows and build playlists that show off your best work.</div>
-              </div>
-            </div>
-          <?php else: ?>
-            <h2 class="section-title">Listener hub</h2>
-            <p class="muted">
-              As RiffStream grows, this page will evolve into your personal music control center.
-            </p>
-            <div class="quick-actions">
-              <div>
-                <div class="qa-item-title">Create and tune playlists</div>
-                <div class="qa-item-note">Group songs by mood, activity, or genre and refine them over time.</div>
-              </div>
-              <div>
-                <div class="qa-item-title">Follow favorite artists</div>
-                <div class="qa-item-note">Keep up with new releases and curated collections.</div>
-              </div>
-              <div>
-                <div class="qa-item-title">Explore new sounds</div>
-                <div class="qa-item-note">Use genres and tags to jump into new “sound worlds.”</div>
-              </div>
-            </div>
-          <?php endif; ?>
-
-          <div class="spacer"></div>
+          <h2 class="section-title">What you can do from this dashboard</h2>
           <p class="muted">
-            For this course project, this dashboard mainly proves that:
+            <strong>Edit your profile</strong><br>
+            Keep your name, email, and account type up to date so your account information always matches how you want to show up on RiffStream.
           </p>
+          <p class="muted">
+            <strong>Review playlists</strong><br>
+            Use playlists to keep your future catalog organized. As playlist features grow, this page will be where you explore and fine-tune your collections.
+          </p>
+          <p class="muted">
+            <strong>Manage account safety</strong><br>
+            Control when you stay signed in, update your password, or remove your account entirely if you ever need a fresh start.
+          </p>
+
+          <p class="muted">For this course project, this dashboard proves that:</p>
           <ul class="muted">
             <li>Sign-up and login are working and protected by sessions.</li>
-            <li>User details are stored in the <code>users</code> table and displayed here.</li>
-            <li>The experience adapts a bit for Artists vs Listeners.</li>
+            <li>User details are stored in the database and displayed here.</li>
+            <li>Users can update their profile, visit a playlists view, and remove their account from one place.</li>
           </ul>
         </section>
       </section>
