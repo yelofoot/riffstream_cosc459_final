@@ -26,7 +26,22 @@ if ($displayName === '') {
     $displayName = $me['username'];
 }
 
-$flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
+$flash_msg    = isset($_GET['msg']) ? $_GET['msg'] : '';
+$create_error = '';
+$pl_name      = trim($_POST['playlist_name'] ?? '');
+$pl_desc      = trim($_POST['playlist_desc'] ?? '');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
+    if ($pl_name === '') {
+        $create_error = 'Please enter a playlist name.';
+    } else {
+        $ins = $pdo->prepare('INSERT INTO playlists (user_id, name, description, created_at) VALUES (?, ?, ?, NOW())');
+        $ins->execute([$_SESSION['user_id'], $pl_name, $pl_desc ?: null]);
+
+        header('Location: dashboard.php?msg=' . urlencode('Playlist created.')); 
+        exit;
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -190,26 +205,20 @@ $flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
 <body>
   <div class="container">
     <main class="card" role="main">
+      <?php $currentUser = $me; include __DIR__ . '/navbar.php'; ?>
       <?php if ($flash_msg): ?>
         <div class="success"><?php echo h($flash_msg); ?></div>
+      <?php endif; ?>
+      <?php if ($create_error): ?>
+        <div class="error"><?php echo h($create_error); ?></div>
       <?php endif; ?>
 
       <div class="hero">
         <div class="hero-main">
           <span class="pill"><?php echo h($me['account_type']); ?> account</span>
-          <h1 class="hero-title">
-            <?php if ($isArtist): ?>
-              Welcome back, <?php echo h($displayName); ?> — RiffStream is ready for your next track.
-            <?php else: ?>
-              Welcome back, <?php echo h($displayName); ?> — time to discover something new.
-            <?php endif; ?>
-          </h1>
+          <h1 class="hero-title">Welcome back — your RiffStream hub is ready.</h1>
           <p class="hero-sub">
-            <?php if ($isArtist): ?>
-              This is your home base for managing your artist presence and connecting with listeners.
-            <?php else: ?>
-              This is your home base for keeping playlists fresh and following the artists you love.
-            <?php endif; ?>
+            From here you can update your profile, review playlists, and manage the account details that keep your music world organized.
           </p>
         </div>
 
@@ -248,62 +257,56 @@ $flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
             <div><?php echo h($_SESSION['last_login_at'] ?? '—'); ?></div>
           </div>
 
-          <div class="row">
+          <div class="actions">
+            <a class="btn" href="edit_profile.php">Edit Profile</a>
+            <a class="btn" href="playlists.php">My Playlists</a>
+            <a class="btn" href="delete_account.php">Delete Account</a>
             <a class="btn" href="logout.php">Log out</a>
           </div>
         </section>
 
         <section class="card-sm" aria-label="Experience focus">
-          <?php if ($isArtist): ?>
-            <h2 class="section-title">Artist spotlight</h2>
-            <p class="muted">
-              Think of this page as your backstage area. As RiffStream grows, this is where you’ll manage uploads and connect with fans.
-            </p>
-            <div class="quick-actions">
-              <div>
-                <div class="qa-item-title">Upload and organize tracks</div>
-                <div class="qa-item-note">Plan EPs, singles, and albums so listeners can explore your catalog.</div>
-              </div>
-              <div>
-                <div class="qa-item-title">Shape your sound identity</div>
-                <div class="qa-item-note">Use consistent genres and descriptions so your music is easier to find.</div>
-              </div>
-              <div>
-                <div class="qa-item-title">Grow your audience</div>
-                <div class="qa-item-note">Encourage follows and build playlists that show off your best work.</div>
-              </div>
-            </div>
-          <?php else: ?>
-            <h2 class="section-title">Listener hub</h2>
-            <p class="muted">
-              As RiffStream grows, this page will evolve into your personal music control center.
-            </p>
-            <div class="quick-actions">
-              <div>
-                <div class="qa-item-title">Create and tune playlists</div>
-                <div class="qa-item-note">Group songs by mood, activity, or genre and refine them over time.</div>
-              </div>
-              <div>
-                <div class="qa-item-title">Follow favorite artists</div>
-                <div class="qa-item-note">Keep up with new releases and curated collections.</div>
-              </div>
-              <div>
-                <div class="qa-item-title">Explore new sounds</div>
-                <div class="qa-item-note">Use genres and tags to jump into new “sound worlds.”</div>
-              </div>
-            </div>
-          <?php endif; ?>
-
-          <div class="spacer"></div>
+          <h2 class="section-title">What you can do from this dashboard</h2>
           <p class="muted">
-            For this course project, this dashboard mainly proves that:
+            <strong>Edit your profile</strong><br>
+            Keep your name, email, and account type up to date so your account information always matches how you want to show up on RiffStream.
           </p>
+          <p class="muted">
+            <strong>Review playlists</strong><br>
+            Use playlists to keep your future catalog organized. As playlist features grow, this page will be where you explore and fine-tune your collections.
+          </p>
+          <p class="muted">
+            <strong>Manage account safety</strong><br>
+            Control when you stay signed in, update your password, or remove your account entirely if you ever need a fresh start.
+          </p>
+
+          <p class="muted">For this course project, this dashboard proves that:</p>
           <ul class="muted">
             <li>Sign-up and login are working and protected by sessions.</li>
-            <li>User details are stored in the <code>users</code> table and displayed here.</li>
-            <li>The experience adapts a bit for Artists vs Listeners.</li>
+            <li>User details are stored in the database and displayed here.</li>
+            <li>Users can update their profile, visit a playlists view, and remove their account from one place.</li>
           </ul>
         </section>
+      </section>
+
+      <section class="card-sm" aria-label="Create playlist" style="margin-top:16px;">
+        <h2 class="section-title">Create a new playlist</h2>
+        <p class="muted">Name your playlist and add an optional description. It will be saved to your account.</p>
+        <form method="post" action="dashboard.php" class="form" novalidate>
+          <input type="hidden" name="create_playlist" value="1">
+          <div class="form-row">
+            <label for="playlist_name">Playlist name</label>
+            <input class="input" type="text" id="playlist_name" name="playlist_name" value="<?php echo h($pl_name); ?>" required maxlength="120">
+          </div>
+          <div class="form-row">
+            <label for="playlist_desc">Description (optional)</label>
+            <textarea id="playlist_desc" name="playlist_desc" class="input" rows="3" maxlength="255" placeholder="Add a short note about this playlist."><?php echo h($pl_desc); ?></textarea>
+          </div>
+          <div class="actions">
+            <button type="submit">Save playlist</button>
+            <a class="link" href="delete_playlist.php">Manage existing playlists</a>
+          </div>
+        </form>
       </section>
 
       <div class="footer">RiffStream · dashboard/homepage for COSC 459</div>
