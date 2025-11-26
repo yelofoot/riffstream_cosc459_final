@@ -50,159 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RiffStream · Dashboard</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .hero {
-      padding: 20px 22px;
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at top left, rgba(94,183,255,0.38), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(130,255,173,0.25), transparent 55%),
-        rgba(0,0,0,0.45);
-      border: 1px solid rgba(255,255,255,0.18);
-      margin-bottom: 22px;
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.1fr);
-      gap: 18px;
-      align-items: center;
-    }
-    @media (max-width: 720px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-    .hero-main .pill {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      font-size: 12px;
-      margin-bottom: 8px;
-    }
-    .hero-title {
-      font-size: 24px;
-      margin: 0 0 6px 0;
-    }
-    .hero-sub {
-      margin: 0;
-      font-size: 14px;
-      color: #9fb0ca;
-    }
-
-    .hero-art {
-      justify-self: flex-end;
-      max-width: 210px;
-      width: 100%;
-      padding: 14px;
-      border-radius: 16px;
-      background: linear-gradient(145deg, rgba(10,20,40,0.95), rgba(11,16,28,0.98));
-      border: 1px solid rgba(255,255,255,0.22);
-      box-shadow: 0 14px 38px rgba(0,0,0,0.6);
-      display: grid;
-      grid-template-rows: auto auto;
-      gap: 10px;
-    }
-    .hero-art-logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .hero-art-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: rgba(7,12,26,0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255,255,255,0.18);
-    }
-    .hero-art-logo img {
-      width: 26px;
-      height: 26px;
-    }
-    .hero-art-text {
-      font-size: 13px;
-      color: #d9e4ff;
-    }
-    .hero-wave {
-      height: 40px;
-      border-radius: 999px;
-      background:
-        linear-gradient(90deg, rgba(94,183,255,0.85), rgba(130,255,173,0.95));
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-wave::before {
-      content: "";
-      position: absolute;
-      inset: 9px;
-      border-radius: 999px;
-      background-image:
-        repeating-linear-gradient(90deg,
-          rgba(11,17,30,0.75) 0 4px,
-          transparent 4px 8px);
-      opacity: 0.5;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-      gap: 20px;
-      margin-top: 14px;
-    }
-    @media (max-width: 900px) {
-      .cards {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-    .card-sm {
-      padding: 18px 18px 20px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    .section-title {
-      margin: 0 0 6px 0;
-      font-size: 18px;
-    }
-    .muted { color: #9fb0ca; font-size: 14px; }
-
-    .kv {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 6px 12px;
-      margin-top: 12px;
-    }
-    .kv div {
-      padding: 2px 0;
-      font-size: 14px;
-    }
-
-    .quick-actions {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 12px;
-      font-size: 14px;
-    }
-    .qa-item-title {
-      font-weight: 500;
-    }
-    .qa-item-note {
-      font-size: 13px;
-      color: #9fb0ca;
-    }
-
-    .row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-    .spacer { height: 8px; }
-  </style>
 </head>
-<body>
+<body class="dashboard-page">
   <div class="container">
     <main class="card" role="main">
       <?php $currentUser = $me; include __DIR__ . '/navbar.php'; ?>
@@ -258,15 +107,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
           </div>
 
           <div class="actions">
-            <a class="btn" href="edit_profile.php">Edit Profile</a>
-            <a class="btn" href="playlists.php">My Playlists</a>
-            <a class="btn" href="delete_account.php">Delete Account</a>
-          <div class="row">
-            <a class="btn" href="update_profile.php">Edit profile</a>
-            <a class="btn btn-secondary" href="delete_playlist.php">Manage playlists</a>
+            <a class="btn" href="edit_profile.php">Edit profile</a>
+            <a class="btn btn-secondary" href="playlists.php">My playlists</a>
             <?php if ($isArtist): ?>
               <a class="btn" href="add_track.php">Add track</a>
             <?php endif; ?>
+            <a class="btn btn-danger" href="delete_account.php">Delete account</a>
             <a class="btn" href="logout.php">Log out</a>
           </div>
         </section>
@@ -285,15 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
             <strong>Manage account safety</strong><br>
             Control when you stay signed in, update your password, or remove your account entirely if you ever need a fresh start.
           </p>
-          <p class="muted">
-            <strong>Review playlists</strong><br>
-            Use playlists to keep your future catalog organized. As playlist features grow, this page will be where you explore and fine-tune your collections.
-          </p>
-          <p class="muted">
-            <strong>Manage account safety</strong><br>
-            Control when you stay signed in, update your password, or remove your account entirely if you ever need a fresh start.
-          </p>
-
           <p class="muted">For this course project, this dashboard proves that:</p>
           <ul class="muted">
             <li>Sign-up and login are working and protected by sessions.</li>
@@ -303,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
         </section>
       </section>
 
-      <section class="card-sm" aria-label="Create playlist" style="margin-top:16px;">
+      <section class="card-sm card-sm-spaced" aria-label="Create playlist">
         <h2 class="section-title">Create a new playlist</h2>
         <p class="muted">Name your playlist and add an optional description. It will be saved to your account.</p>
         <form method="post" action="dashboard.php" class="form" novalidate>
