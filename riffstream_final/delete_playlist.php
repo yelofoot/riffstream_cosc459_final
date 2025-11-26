@@ -44,6 +44,7 @@ $playlists = $playlistsStmt->fetchAll();
         <div class="actions">
           <a class="btn" href="dashboard.php">Create your first playlist</a>
         </div>
+        <div class="note">No playlists found. Create one on the dashboard, then you can delete it here.</div>
       <?php else: ?>
         <ul class="stacked-list">
           <?php foreach ($playlists as $pl): ?>

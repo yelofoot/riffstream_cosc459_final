@@ -30,6 +30,7 @@ try {
         <div>
           <h1>My Playlists</h1>
           <p>This page is where your playlists will live. As RiffStream grows, you’ll be able to group tracks, experiment with different moods, and organize your catalog.</p>
+          <p>Everything you curate will appear here as playlist features roll out.</p>
         </div>
       </div>
 
@@ -37,6 +38,7 @@ try {
         <div class="error"><?php echo h($load_error); ?></div>
       <?php elseif (empty($playlists)): ?>
         <div class="note">You don’t have any playlists yet. Once playlist features are fully implemented, they will appear here.</div>
+        <div class="note">You don’t have any playlists yet. Once playlist features are implemented, they will appear here.</div>
       <?php else: ?>
         <ul class="stacked-list" aria-label="Your playlists">
           <?php foreach ($playlists as $pl): ?>
@@ -44,6 +46,8 @@ try {
               <div class="item-top">
                 <div class="qa-item-title">Playlist name: <?php echo h($pl['name']); ?></div>
                 <div class="meta">Created on <?php echo h(date('M j, Y', strtotime($pl['created_at']))); ?></div>
+                <div class="qa-item-title"><?php echo h($pl['name']); ?></div>
+                <div class="meta">Created <?php echo h(date('M j, Y', strtotime($pl['created_at']))); ?></div>
               </div>
             </li>
           <?php endforeach; ?>

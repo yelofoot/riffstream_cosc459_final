@@ -39,6 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
           <h1>Delete your RiffStream account</h1>
           <p>Deleting your account will remove your profile from this project and sign you out. This action cannot be undone.</p>
+          <h1>Delete your account</h1>
+          <p>This will remove your profile and any associated playlists or tracks.</p>
         </div>
       </div>
 
@@ -51,6 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <form method="post" action="delete_account.php" class="actions">
         <button type="submit" class="btn btn-danger">Yes, delete my account</button>
         <a class="link" href="dashboard.php">Cancel and go back to dashboard</a>
+      <div class="note">This action cannot be undone. If you're sure, confirm below.</div>
+
+      <form method="post" action="delete_account.php" class="actions">
+        <button type="submit" class="btn btn-danger">Confirm delete</button>
+        <a class="link" href="dashboard.php">Cancel and return to dashboard</a>
       </form>
     </main>
   </div>
