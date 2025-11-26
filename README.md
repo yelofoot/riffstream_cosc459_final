@@ -21,6 +21,30 @@ A PHP/MySQL web app where listeners and artists can sign up, log in, and manage 
 - `database.sql` – Schema and starter data for users/playlists/tracks.
 - `images/logo.svg` – Project logo used in headers.
 
+## Project Structure
+- signup.php – Registration page for new users
+- login.php – User login page
+- dashboard.php – User dashboard (requires login)
+- edit_profile.php – Edit/update user profile
+- playlists.php – View user playlists (placeholder page until playlists are implemented)
+- delete_account.php – Delete the currently logged-in user account
+- logout.php – Ends the user session
+- db.php – Database connection (MAMP defaults)
+- common.php – Shared session/helper functions
+- style.css – Global site styling
+- database.sql – Database schema + sample user data
+- images/logo.svg – Project logo
+
+## Features
+- Secure signup/login and session-based dashboard
+- Update Feature: Edit profile details via edit_profile.php
+- Delete Feature: Delete account via delete_account.php
+- Additional Feature: “My Playlists” page via playlists.php
+
+## How to Run (MAMP)
+Move the project folder into:
+Applications/MAMP/htdocs/
+
 ## Features
 - Secure signup/login with session-based dashboard access.
 - Profile editing, including account type and optional password change.
@@ -34,6 +58,11 @@ The application source lives in the `riffstream_final/` directory of this reposi
 ### Option A: use the app folder only (recommended)
 1. Move the **`riffstream_final/`** folder into `Applications/MAMP/htdocs/`.
 2. Visit the app at: `http://localhost:8888/riffstream_final/`
+## Quick Setup (MAMP)
+1) Place the project folder inside `Applications/MAMP/htdocs/`.
+2) Open phpMyAdmin at `http://localhost:8888/phpMyAdmin/`.
+3) Create/import the database using `database.sql` (Import tab → choose file → Go).
+4) Visit `http://localhost:8888/riffstream_cosc459_final/signup.php` to register, then log in via `login.php`.
 
 ### Option B: keep the repository wrapper
 1. Move the entire repository (e.g., **`riffstream_cosc459_final/`**) into `Applications/MAMP/htdocs/`.
@@ -52,6 +81,15 @@ Replace `<base>` with the correct base path from the options above.
 - Playlists: `http://localhost:8888/<base>/playlists.php`
 - Delete account: `http://localhost:8888/<base>/delete_account.php`
 - Logout: `http://localhost:8888/<base>/logout.php`
+  Signup page:
+  http://localhost:8888/riffstream_cosc459_final/signup.php
+
+  Login page:
+  http://localhost:8888/riffstream_cosc459_final/login.php
+
+  Dashboard:
+  http://localhost:8888/riffstream_cosc459_final/dashboard.php
+  
 
 ## Quick setup
 1. Place the project in MAMP using one of the options above.
