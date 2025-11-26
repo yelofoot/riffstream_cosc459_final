@@ -24,6 +24,7 @@ $playlists = $playlistsStmt->fetchAll();
 <body>
   <div class="container">
     <main class="card" role="main">
+      <?php $currentUser = $me; include __DIR__ . '/navbar.php'; ?>
       <div class="header-row">
         <img src="images/logo.svg" alt="RiffStream logo" class="logo">
         <div>
@@ -37,6 +38,12 @@ $playlists = $playlistsStmt->fetchAll();
       <?php endif; ?>
 
       <?php if (empty($playlists)): ?>
+        <div class="note">
+          You don’t have any playlists yet. Create one on the dashboard, then you can delete it here.
+        </div>
+        <div class="actions">
+          <a class="btn" href="dashboard.php">Create your first playlist</a>
+        </div>
         <div class="note">No playlists found. Create one on the dashboard, then you can delete it here.</div>
       <?php else: ?>
         <ul class="stacked-list">

@@ -26,7 +26,22 @@ if ($displayName === '') {
     $displayName = $me['username'];
 }
 
-$flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
+$flash_msg    = isset($_GET['msg']) ? $_GET['msg'] : '';
+$create_error = '';
+$pl_name      = trim($_POST['playlist_name'] ?? '');
+$pl_desc      = trim($_POST['playlist_desc'] ?? '');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
+    if ($pl_name === '') {
+        $create_error = 'Please enter a playlist name.';
+    } else {
+        $ins = $pdo->prepare('INSERT INTO playlists (user_id, name, description, created_at) VALUES (?, ?, ?, NOW())');
+        $ins->execute([$_SESSION['user_id'], $pl_name, $pl_desc ?: null]);
+
+        header('Location: dashboard.php?msg=' . urlencode('Playlist created.')); 
+        exit;
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -190,8 +205,12 @@ $flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
 <body>
   <div class="container">
     <main class="card" role="main">
+      <?php $currentUser = $me; include __DIR__ . '/navbar.php'; ?>
       <?php if ($flash_msg): ?>
         <div class="success"><?php echo h($flash_msg); ?></div>
+      <?php endif; ?>
+      <?php if ($create_error): ?>
+        <div class="error"><?php echo h($create_error); ?></div>
       <?php endif; ?>
 
       <div class="hero">
@@ -238,6 +257,10 @@ $flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
             <div><?php echo h($_SESSION['last_login_at'] ?? '—'); ?></div>
           </div>
 
+          <div class="actions">
+            <a class="btn" href="edit_profile.php">Edit Profile</a>
+            <a class="btn" href="playlists.php">My Playlists</a>
+            <a class="btn" href="delete_account.php">Delete Account</a>
           <div class="row">
             <a class="btn" href="update_profile.php">Edit profile</a>
             <a class="btn btn-secondary" href="delete_playlist.php">Manage playlists</a>
@@ -262,6 +285,14 @@ $flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
             <strong>Manage account safety</strong><br>
             Control when you stay signed in, update your password, or remove your account entirely if you ever need a fresh start.
           </p>
+          <p class="muted">
+            <strong>Review playlists</strong><br>
+            Use playlists to keep your future catalog organized. As playlist features grow, this page will be where you explore and fine-tune your collections.
+          </p>
+          <p class="muted">
+            <strong>Manage account safety</strong><br>
+            Control when you stay signed in, update your password, or remove your account entirely if you ever need a fresh start.
+          </p>
 
           <p class="muted">For this course project, this dashboard proves that:</p>
           <ul class="muted">
@@ -270,6 +301,26 @@ $flash_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
             <li>Users can update their profile, visit a playlists view, and remove their account from one place.</li>
           </ul>
         </section>
+      </section>
+
+      <section class="card-sm" aria-label="Create playlist" style="margin-top:16px;">
+        <h2 class="section-title">Create a new playlist</h2>
+        <p class="muted">Name your playlist and add an optional description. It will be saved to your account.</p>
+        <form method="post" action="dashboard.php" class="form" novalidate>
+          <input type="hidden" name="create_playlist" value="1">
+          <div class="form-row">
+            <label for="playlist_name">Playlist name</label>
+            <input class="input" type="text" id="playlist_name" name="playlist_name" value="<?php echo h($pl_name); ?>" required maxlength="120">
+          </div>
+          <div class="form-row">
+            <label for="playlist_desc">Description (optional)</label>
+            <textarea id="playlist_desc" name="playlist_desc" class="input" rows="3" maxlength="255" placeholder="Add a short note about this playlist."><?php echo h($pl_desc); ?></textarea>
+          </div>
+          <div class="actions">
+            <button type="submit">Save playlist</button>
+            <a class="link" href="delete_playlist.php">Manage existing playlists</a>
+          </div>
+        </form>
       </section>
 
       <div class="footer">RiffStream · dashboard/homepage for COSC 459</div>

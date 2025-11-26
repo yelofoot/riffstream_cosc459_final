@@ -13,6 +13,7 @@ if (!$user) {
 }
 
 if ($user['account_type'] !== 'Artist') {
+    header('Location: dashboard.php?msg=' . urlencode('Tracks are available to artist accounts only. Switch to an Artist account to add music.'));
     header('Location: dashboard.php?msg=' . urlencode('Tracks are available to artist accounts only.'));
     exit;
 }
@@ -54,6 +55,7 @@ $tracks = $listStmt->fetchAll();
 <body>
   <div class="container">
     <main class="card" role="main">
+      <?php $currentUser = ['account_type' => $user['account_type']]; include __DIR__ . '/navbar.php'; ?>
       <div class="header-row">
         <img src="images/logo.svg" alt="RiffStream logo" class="logo">
         <div>

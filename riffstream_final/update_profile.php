@@ -76,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <div class="container">
     <main class="card" role="main">
+      <?php $currentUser = $me; include __DIR__ . '/navbar.php'; ?>
       <div class="header-row">
         <img src="images/logo.svg" alt="RiffStream logo" class="logo">
         <div>
