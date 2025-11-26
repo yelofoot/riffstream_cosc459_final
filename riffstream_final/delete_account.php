@@ -3,35 +3,23 @@ require __DIR__ . '/common.php';
 require __DIR__ . '/db.php';
 require_login();
 
-// Create a per-session CSRF token for account deletion.
-if (empty($_SESSION['csrf_token_delete_account'])) {
-    $_SESSION['csrf_token_delete_account'] = bin2hex(random_bytes(32));
-}
-
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $token = $_POST['csrf_token'] ?? '';
+    $pdo->beginTransaction();
+    try {
+        $delete = $pdo->prepare('DELETE FROM users WHERE user_id = ? LIMIT 1');
+        $delete->execute([$_SESSION['user_id']]);
+        $pdo->commit();
 
-    if (!hash_equals($_SESSION['csrf_token_delete_account'], $token)) {
-        $error = 'Invalid request. Please try again from the dashboard.';
-    } else {
-        $pdo->beginTransaction();
-        try {
-            $delete = $pdo->prepare('DELETE FROM users WHERE user_id = ? LIMIT 1');
-            $delete->execute([$_SESSION['user_id']]);
-            $pdo->commit();
+        session_unset();
+        session_destroy();
 
-            session_unset();
-            session_destroy();
-
-            unset($_SESSION['csrf_token_delete_account']);
-            header('Location: login.php?msg=' . urlencode('Your account has been deleted successfully.'));
-            exit;
-        } catch (Exception $e) {
-            $pdo->rollBack();
-            $error = 'We could not delete your account right now. Please try again.';
-        }
+        header('Location: login.php?msg=' . urlencode('Your account has been deleted successfully.'));
+        exit;
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        $error = 'We could not delete your account right now. Please try again.';
     }
 }
 ?>
@@ -51,6 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
           <h1>Delete your RiffStream account</h1>
           <p>Deleting your account will remove your profile from this project and sign you out. This action cannot be undone.</p>
+          <h1>Delete your account</h1>
+          <p>This will remove your profile and any associated playlists or tracks.</p>
         </div>
       </div>
 
@@ -61,9 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="note">Are you sure you want to continue?</div>
 
       <form method="post" action="delete_account.php" class="actions">
-        <input type="hidden" name="csrf_token" value="<?php echo h($_SESSION['csrf_token_delete_account']); ?>">
         <button type="submit" class="btn btn-danger">Yes, delete my account</button>
         <a class="link" href="dashboard.php">Cancel and go back to dashboard</a>
+      <div class="note">This action cannot be undone. If you're sure, confirm below.</div>
+
+      <form method="post" action="delete_account.php" class="actions">
+        <button type="submit" class="btn btn-danger">Confirm delete</button>
+        <a class="link" href="dashboard.php">Cancel and return to dashboard</a>
       </form>
     </main>
   </div>

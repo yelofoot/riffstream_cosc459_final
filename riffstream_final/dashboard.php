@@ -261,6 +261,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
             <a class="btn" href="edit_profile.php">Edit Profile</a>
             <a class="btn" href="playlists.php">My Playlists</a>
             <a class="btn" href="delete_account.php">Delete Account</a>
+          <div class="row">
+            <a class="btn" href="update_profile.php">Edit profile</a>
+            <a class="btn btn-secondary" href="delete_playlist.php">Manage playlists</a>
+            <?php if ($isArtist): ?>
+              <a class="btn" href="add_track.php">Add track</a>
+            <?php endif; ?>
             <a class="btn" href="logout.php">Log out</a>
           </div>
         </section>
@@ -270,6 +276,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
           <p class="muted">
             <strong>Edit your profile</strong><br>
             Keep your name, email, and account type up to date so your account information always matches how you want to show up on RiffStream.
+          </p>
+          <p class="muted">
+            <strong>Review playlists</strong><br>
+            Use playlists to keep your future catalog organized. As playlist features grow, this page will be where you explore and fine-tune your collections.
+          </p>
+          <p class="muted">
+            <strong>Manage account safety</strong><br>
+            Control when you stay signed in, update your password, or remove your account entirely if you ever need a fresh start.
           </p>
           <p class="muted">
             <strong>Review playlists</strong><br>

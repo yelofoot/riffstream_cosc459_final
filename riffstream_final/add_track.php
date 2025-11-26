@@ -14,6 +14,7 @@ if (!$user) {
 
 if ($user['account_type'] !== 'Artist') {
     header('Location: dashboard.php?msg=' . urlencode('Tracks are available to artist accounts only. Switch to an Artist account to add music.'));
+    header('Location: dashboard.php?msg=' . urlencode('Tracks are available to artist accounts only.'));
     exit;
 }
 
