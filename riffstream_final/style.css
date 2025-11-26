@@ -343,6 +343,10 @@ button:disabled {
   border: 1px solid rgba(255,255,255,0.08);
 }
 
+.dashboard-page .card-sm.card-sm-spaced {
+  margin-top: 16px;
+}
+
 .dashboard-page .section-title {
   margin: 0 0 6px 0;
   font-size: 18px;

@@ -107,6 +107,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
           </div>
 
           <div class="actions">
+            <a class="btn" href="edit_profile.php">Edit profile</a>
+            <a class="btn btn-secondary" href="playlists.php">My playlists</a>
             <a class="btn" href="edit_profile.php">Edit Profile</a>
             <a class="btn" href="playlists.php">My Playlists</a>
             <a class="btn" href="delete_account.php">Delete Account</a>
@@ -115,6 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
             <?php if ($isArtist): ?>
               <a class="btn" href="add_track.php">Add track</a>
             <?php endif; ?>
+            <a class="btn btn-danger" href="delete_account.php">Delete account</a>
             <a class="btn" href="logout.php">Log out</a>
           </div>
         </section>
@@ -142,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
         </section>
       </section>
 
-      <section class="card-sm" aria-label="Create playlist" style="margin-top:16px;">
+      <section class="card-sm card-sm-spaced" aria-label="Create playlist">
         <h2 class="section-title">Create a new playlist</h2>
         <p class="muted">Name your playlist and add an optional description. It will be saved to your account.</p>
         <form method="post" action="dashboard.php" class="form" novalidate>
