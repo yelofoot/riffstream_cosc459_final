@@ -41,6 +41,10 @@ Access the application:
   Login page:
   http://localhost:8888/riffstream_final/login.php
 
+  Dashboard:
+  http://localhost:8888/riffstream_final/dashboard.php
+  
+
 ## Navigation
 After logging in, use the dashboard buttons to:
 
