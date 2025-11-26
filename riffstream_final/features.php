@@ -24,6 +24,7 @@ $recent_activity = [
 <body>
   <div class="container">
     <main class="card" role="main">
+      <?php $currentUser = ['account_type' => $_SESSION['account_type'] ?? 'Listener']; include __DIR__ . '/navbar.php'; ?>
       <div class="header-row">
         <img src="images/logo.svg" alt="RiffStream logo" class="logo">
         <div>

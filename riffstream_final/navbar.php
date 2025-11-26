@@ -9,6 +9,7 @@ $accountType = $currentUser['account_type'] ?? ($_SESSION['account_type'] ?? 'Li
   <div class="nav-brand">RiffStream</div>
   <div class="nav-links">
     <a href="dashboard.php" class="nav-link">Dashboard</a>
+    <a href="features.php" class="nav-link">New Features</a>
     <a href="delete_playlist.php" class="nav-link">Manage Playlists</a>
     <a href="update_profile.php" class="nav-link">Edit Profile</a>
     <?php if ($accountType === 'Artist'): ?>
