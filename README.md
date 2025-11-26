@@ -56,7 +56,7 @@ Applications/MAMP/htdocs/
 1) Place the project folder inside `Applications/MAMP/htdocs/`.
 2) Open phpMyAdmin at `http://localhost:8888/phpMyAdmin/`.
 3) Create/import the database using `database.sql` (Import tab → choose file → Go).
-4) Visit `http://localhost:8888/riffstream_final/signup.php` to register, then log in via `login.php`.
+4) Visit `http://localhost:8888/riffstream_cosc459_final/signup.php` to register, then log in via `login.php`.
 
 ## Using the App
 - After login, the dashboard shows your profile and playlist tools with a nav bar linking to Dashboard, Manage Playlists, Edit Profile, (Artist: Add Track), and Log Out.
@@ -66,13 +66,13 @@ Applications/MAMP/htdocs/
 Access the application:
 
   Signup page:
-  http://localhost:8888/riffstream_final/signup.php
+  http://localhost:8888/riffstream_cosc459_final/signup.php
 
   Login page:
-  http://localhost:8888/riffstream_final/login.php
+  http://localhost:8888/riffstream_cosc459_final/login.php
 
   Dashboard:
-  http://localhost:8888/riffstream_final/dashboard.php
+  http://localhost:8888/riffstream_cosc459_final/dashboard.php
   
 
 ## Navigation
