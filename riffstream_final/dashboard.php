@@ -284,15 +284,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_playlist'])) {
             <strong>Manage account safety</strong><br>
             Control when you stay signed in, update your password, or remove your account entirely if you ever need a fresh start.
           </p>
-          <p class="muted">
-            <strong>Review playlists</strong><br>
-            Use playlists to keep your future catalog organized. As playlist features grow, this page will be where you explore and fine-tune your collections.
-          </p>
-          <p class="muted">
-            <strong>Manage account safety</strong><br>
-            Control when you stay signed in, update your password, or remove your account entirely if you ever need a fresh start.
-          </p>
-
           <p class="muted">For this course project, this dashboard proves that:</p>
           <ul class="muted">
             <li>Sign-up and login are working and protected by sessions.</li>
