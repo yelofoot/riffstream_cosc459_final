@@ -22,28 +22,18 @@ A PHP/MySQL web app where listeners and artists can sign up, log in, and manage 
 - `images/logo.svg` – Project logo used in headers.
 
 ## Project Structure
-- signup.php – Registration page for new users
-- login.php – User login page
-- dashboard.php – User dashboard (requires login)
-- edit_profile.php – Edit/update user profile
-- playlists.php – View user playlists (placeholder page until playlists are implemented)
-- delete_account.php – Delete the currently logged-in user account
-- logout.php – Ends the user session
-- db.php – Database connection (MAMP defaults)
-- common.php – Shared session/helper functions
-- style.css – Global site styling
-- database.sql – Database schema + sample user data
-- images/logo.svg – Project logo
-
-## Features
-- Secure signup/login and session-based dashboard
-- Update Feature: Edit profile details via edit_profile.php
-- Delete Feature: Delete account via delete_account.php
-- Additional Feature: “My Playlists” page via playlists.php
-
-## How to Run (MAMP)
-Move the project folder into:
-Applications/MAMP/htdocs/
+- `signup.php` – Registration page for new users
+- `login.php` – User login page
+- `dashboard.php` – User dashboard (requires login)
+- `edit_profile.php` – Edit/update user profile
+- `playlists.php` – View user playlists (placeholder page until playlists are implemented)
+- `delete_account.php` – Delete the currently logged-in user account
+- `logout.php` – Ends the user session
+- `db.php` – Database connection (MAMP defaults)
+- `common.php` – Shared session/helper functions
+- `style.css` – Global site styling
+- `database.sql` – Database schema + sample user data
+- `images/logo.svg` – Project logo
 
 ## Features
 - Secure signup/login with session-based dashboard access.
@@ -53,43 +43,26 @@ Applications/MAMP/htdocs/
 - Shared navigation showing "Add Track" only to Artist accounts.
 
 ## Running under MAMP
-The application source lives in the `riffstream_final/` directory of this repository. Your URLs must match the directory name you place inside `Applications/MAMP/htdocs/`.
+The project lives at `/Applications/MAMP/htdocs/riffstream_cosc459_final/riffstream_final/`. With the default MAMP Apache port `8888`, the live site is served from:
 
-### Option A: use the app folder only (recommended)
-1. Move the **`riffstream_final/`** folder into `Applications/MAMP/htdocs/`.
-2. Visit the app at: `http://localhost:8888/riffstream_final/`
-## Quick Setup (MAMP)
-1) Place the project folder inside `Applications/MAMP/htdocs/`.
-2) Open phpMyAdmin at `http://localhost:8888/phpMyAdmin/`.
-3) Create/import the database using `database.sql` (Import tab → choose file → Go).
-4) Visit `http://localhost:8888/riffstream_cosc459_final/signup.php` to register, then log in via `login.php`.
+- Base URL: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/`
 
-### Option B: keep the repository wrapper
-1. Move the entire repository (e.g., **`riffstream_cosc459_final/`**) into `Applications/MAMP/htdocs/`.
-2. Visit the app with the nested path: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/`
-
-If the URL path does not match the folder name you copied into `htdocs`, MAMP will return a 404 when following the README links.
+## MAMP Setup Instructions
+- Start Apache and MySQL in the MAMP app.
+- Ensure the document root is set to `/Applications/MAMP/htdocs`.
+- Place the entire project folder inside `htdocs`.
+- Open each page using the URL format shown below.
 
 ## URL cheat sheet
-Replace `<base>` with the correct base path from the options above.
-
-- Signup: `http://localhost:8888/<base>/signup.php`
-- Login: `http://localhost:8888/<base>/login.php`
-- Dashboard: `http://localhost:8888/<base>/dashboard.php`
-- Edit profile: `http://localhost:8888/<base>/edit_profile.php`
-- Add track (Artist only): `http://localhost:8888/<base>/add_track.php`
-- Playlists: `http://localhost:8888/<base>/playlists.php`
-- Delete account: `http://localhost:8888/<base>/delete_account.php`
-- Logout: `http://localhost:8888/<base>/logout.php`
-  Signup page:
-  http://localhost:8888/riffstream_cosc459_final/signup.php
-
-  Login page:
-  http://localhost:8888/riffstream_cosc459_final/login.php
-
-  Dashboard:
-  http://localhost:8888/riffstream_cosc459_final/dashboard.php
-  
+With the structure above, the full URLs are:
+- Login: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/login.php`
+- Signup: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/signup.php`
+- Dashboard: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/dashboard.php`
+- Playlists: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/playlists.php`
+- Edit profile: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/edit_profile.php`
+- Update profile: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/update_profile.php`
+- Delete account: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/delete_account.php`
+- Add track (Artist only): `http://localhost:8888/riffstream_cosc459_final/riffstream_final/add_track.php`
 
 ## Quick setup
 1. Place the project in MAMP using one of the options above.
