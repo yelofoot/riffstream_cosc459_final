@@ -56,6 +56,13 @@ The project ships as an outer repository folder (`riffstream_cosc459_final`) con
    - Example: `http://localhost:8888/riffstream_final/login.php`
 
 If you see a 404, double-check whether you kept the outer `riffstream_cosc459_final` directory; the base URL must match the chosen layout exactly.
+The repository contains an outer project folder plus the actual app folder (`riffstream_final`) that holds the PHP files shown in the screenshot (`add_track.php`, `dashboard.php`, etc.). Use one of these layouts in `/Applications/MAMP/htdocs`:
+
+1. **App folder only (recommended)** — copy the inner `riffstream_final` folder so `htdocs` looks like: `htdocs/riffstream_final/{add_track.php,...}`
+   - Base URL: `http://localhost:8888/riffstream_final/`
+
+2. **Outer repo kept** — if you place the whole repository in `htdocs` so you still see `README.md` and the `docs/` folder next to the app, the PHP lives at `htdocs/riffstream_cosc459_final/riffstream_final/{add_track.php,...}`
+   - Base URL (nested): `http://localhost:8888/riffstream_cosc459_final/riffstream_final/`
 
 ## MAMP Setup Instructions
 - Start Apache and MySQL in the MAMP app.
