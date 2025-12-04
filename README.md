@@ -84,3 +84,6 @@ Using the required nested folders in `htdocs`, the full URLs are:
 
 ## Using the app
 After login, the dashboard shows your profile and playlist tools with a nav bar linking to Dashboard, Manage Playlists, Edit Profile, (Artist: Add Track), and Log Out. Create playlists directly on the dashboard or manage/delete them from the Playlists page. Artists can add tracks from Add Track; listeners attempting direct access are redirected back to the dashboard. Use Edit Profile to keep details current or Delete Account to remove your profile entirely.
+
+## Limitations
+- Riffstream currently supports the uploading of audiofiles but has no audio playback functionality currently
