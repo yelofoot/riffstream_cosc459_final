@@ -43,6 +43,19 @@ A PHP/MySQL web app where listeners and artists can sign up, log in, and manage 
 - Shared navigation showing "Add Track" only to Artist accounts.
 
 ## Running under MAMP
+The project ships as an outer repository folder (`riffstream_cosc459_final`) containing the actual PHP app in the inner `riffstream_final` folder. Choose the layout that matches how you download/place the repo into `/Applications/MAMP/htdocs` to avoid 404s:
+
+1. **Clone or download the repo into `htdocs` (keeps outer folder)**
+   - Files sit at `/Applications/MAMP/htdocs/riffstream_cosc459_final/riffstream_final/{add_track.php,...}`
+   - Base URL for every page: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/`
+   - Example: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/login.php`
+
+2. **Copy only the app folder into `htdocs` (no outer folder)**
+   - Files sit at `/Applications/MAMP/htdocs/riffstream_final/{add_track.php,...}`
+   - Base URL for every page: `http://localhost:8888/riffstream_final/`
+   - Example: `http://localhost:8888/riffstream_final/login.php`
+
+If you see a 404, double-check whether you kept the outer `riffstream_cosc459_final` directory; the base URL must match the chosen layout exactly.
 The repository contains an outer project folder plus the actual app folder (`riffstream_final`) that holds the PHP files shown in the screenshot (`add_track.php`, `dashboard.php`, etc.). Use one of these layouts in `/Applications/MAMP/htdocs`:
 
 1. **App folder only (recommended)** — copy the inner `riffstream_final` folder so `htdocs` looks like: `htdocs/riffstream_final/{add_track.php,...}`
@@ -54,7 +67,7 @@ The repository contains an outer project folder plus the actual app folder (`rif
 ## MAMP Setup Instructions
 - Start Apache and MySQL in the MAMP app.
 - Ensure the document root is set to `/Applications/MAMP/htdocs`.
-- Place the entire project folder inside `htdocs`.
+- Place the project in `htdocs` using one of the two layouts above (whole repo vs. inner app folder) and use the matching base URL.
 - Open each page using the URL format shown below.
 
 ## URL cheat sheet
