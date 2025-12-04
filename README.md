@@ -21,20 +21,6 @@ A PHP/MySQL web app where listeners and artists can sign up, log in, and manage 
 - `database.sql` – Schema and starter data for users/playlists/tracks.
 - `images/logo.svg` – Project logo used in headers.
 
-## Project Structure
-- `signup.php` – Registration page for new users
-- `login.php` – User login page
-- `dashboard.php` – User dashboard (requires login)
-- `edit_profile.php` – Edit/update user profile
-- `playlists.php` – View user playlists (placeholder page until playlists are implemented)
-- `delete_account.php` – Delete the currently logged-in user account
-- `logout.php` – Ends the user session
-- `db.php` – Database connection (MAMP defaults)
-- `common.php` – Shared session/helper functions
-- `style.css` – Global site styling
-- `database.sql` – Database schema + sample user data
-- `images/logo.svg` – Project logo
-
 ## Features
 - Secure signup/login with session-based dashboard access.
 - Profile editing, including account type and optional password change.
@@ -50,6 +36,26 @@ The downloaded ZIP extracts to an outer folder named `riffstream_cosc459_final-m
 - Example: `http://localhost:8888/riffstream_cosc459_final-main/riffstream_final/login.php`
 
 If you see a 404, verify the `-main` suffix remains in the folder name and that both `riffstream_cosc459_final-main` and `riffstream_final` are present in the URL.
+The project ships as an outer repository folder (`riffstream_cosc459_final`) containing the actual PHP app in the inner `riffstream_final` folder. Choose the layout that matches how you download/place the repo into `/Applications/MAMP/htdocs` to avoid 404s:
+
+1. **Clone or download the repo into `htdocs` (keeps outer folder)**
+   - Files sit at `/Applications/MAMP/htdocs/riffstream_cosc459_final/riffstream_final/{add_track.php,...}`
+   - Base URL for every page: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/`
+   - Example: `http://localhost:8888/riffstream_cosc459_final/riffstream_final/login.php`
+
+2. **Copy only the app folder into `htdocs` (no outer folder)**
+   - Files sit at `/Applications/MAMP/htdocs/riffstream_final/{add_track.php,...}`
+   - Base URL for every page: `http://localhost:8888/riffstream_final/`
+   - Example: `http://localhost:8888/riffstream_final/login.php`
+
+If you see a 404, double-check whether you kept the outer `riffstream_cosc459_final` directory; the base URL must match the chosen layout exactly.
+The repository contains an outer project folder plus the actual app folder (`riffstream_final`) that holds the PHP files shown in the screenshot (`add_track.php`, `dashboard.php`, etc.). Use one of these layouts in `/Applications/MAMP/htdocs`:
+
+1. **App folder only (recommended)** — copy the inner `riffstream_final` folder so `htdocs` looks like: `htdocs/riffstream_final/{add_track.php,...}`
+   - Base URL: `http://localhost:8888/riffstream_final/`
+
+2. **Outer repo kept** — if you place the whole repository in `htdocs` so you still see `README.md` and the `docs/` folder next to the app, the PHP lives at `htdocs/riffstream_cosc459_final/riffstream_final/{add_track.php,...}`
+   - Base URL (nested): `http://localhost:8888/riffstream_cosc459_final/riffstream_final/`
 
 ## MAMP Setup Instructions
 - Start Apache and MySQL in the MAMP app.
@@ -67,6 +73,8 @@ Using the required nested folders in `htdocs`, the full URLs are:
 - Update profile: `http://localhost:8888/riffstream_cosc459_final-main/riffstream_final/update_profile.php`
 - Delete account: `http://localhost:8888/riffstream_cosc459_final-main/riffstream_final/delete_account.php`
 - Add track (Artist only): `http://localhost:8888/riffstream_cosc459_final-main/riffstream_final/add_track.php`
+- Place the project in `htdocs` using one of the two layouts above (whole repo vs. inner app folder) and use the matching base URL.
+- Open each page using the URL format shown below.
 
 ## Quick setup
 1. Place the extracted `riffstream_cosc459_final-main` folder (with `riffstream_final` inside) into `/Applications/MAMP/htdocs`.
